@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./GalleryWidget.css";
 
 function GalleryWidget() {
-  const images = [
+  const [images, setImages] = useState([
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyAdF9AuNcUlJC09rWiv2dgZCTNniMADaAMw&s",
     "https://repository-images.githubusercontent.com/563188068/e32f9430-a888-47fa-8871-918b0cde9754",
     "https://www.lightgalleryjs.com/blog/7-best-react-image-gallery-libraries/photoswipe.png",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPv2uQmrjKfmUAv40o6R-251WhlLME1Vf4CkPmrT5m9hLCPfP1AWgPV4BiUk-yAXOfiJ0&usqp=CAU",
-  ];
+  ]);
+
+  const handleAddImage = () => {
+    const newImage = prompt("Enter image URL");
+    if (newImage) {
+      setImages([...images, newImage]);
+    }
+  };
 
   return (
     <div className="gallery-widget">
@@ -17,6 +24,7 @@ function GalleryWidget() {
           <img key={index} src={src} alt={`img-${index}`} />
         ))}
       </div>
+      <button className="add-btn" onClick={handleAddImage}>Add Image</button>
     </div>
   );
 }

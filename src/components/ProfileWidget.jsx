@@ -3,14 +3,27 @@ import "./ProfileWidget.css";
 
 function ProfileWidget() {
   const [connected, setConnected] = useState(false);
+  const [activeTab, setActiveTab] = useState("about");
 
   const handleConnect = () => {
-    if (!connected) {
-      setConnected(true);
-      alert("✅ You are now connected!");
-    } else {
-      setConnected(false);
-      alert("❌ Disconnected!");
+    setConnected(!connected);
+    alert(connected ? "❌ Disconnected!" : "✅ You are now connected!");
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "about":
+        return <p>Hi, I'm Arti Markali, a React Developer Intern passionate about frontend development.</p>;
+      case "experiences":
+        return <ul>
+          <li>Internship at XYZ Company</li>
+          <li>React Projects at ABC Startup</li>
+          <li>Open Source Contributions</li>
+        </ul>;
+      case "recommended":
+        return <p>Recommended by 10+ mentors and peers for excellent coding skills.</p>;
+      default:
+        return null;
     }
   };
 
@@ -29,6 +42,15 @@ function ProfileWidget() {
       >
         {connected ? "Connected" : "Connect"}
       </button>
+
+      {/* Tabs */}
+      <div className="tabs">
+        <button className={activeTab === "about" ? "active" : ""} onClick={() => setActiveTab("about")}>About Me</button>
+        <button className={activeTab === "experiences" ? "active" : ""} onClick={() => setActiveTab("experiences")}>Experiences</button>
+        <button className={activeTab === "recommended" ? "active" : ""} onClick={() => setActiveTab("recommended")}>Recommended</button>
+      </div>
+
+      <div className="tab-content">{renderTabContent()}</div>
     </div>
   );
 }

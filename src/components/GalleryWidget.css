@@ -4,6 +4,7 @@
   padding: 20px;
   width: 350px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .gallery-grid {
@@ -21,4 +22,25 @@
 
 .gallery-grid img:hover {
   transform: scale(1.05);
+}
+
+.add-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive for ≥768px */
+@media (min-width: 768px) {
+  .profile-widget, .gallery-widget {
+    width: 300px;
+  }
 }
